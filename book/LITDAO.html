@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>LITDAO - LIT Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="Tokenomics.html"><strong aria-hidden="true">2.</strong> Tokenomics</a></li><li class="chapter-item expanded "><a href="LITDAO_utils.html"><strong aria-hidden="true">3.</strong> Utils</a></li><li class="chapter-item expanded "><a href="LITDAO.html" class="active"><strong aria-hidden="true">4.</strong> LITDAO</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">LIT Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="litdao"><a class="header" href="#litdao">LITDAO</a></h1>
+<h2 id="litstaking"><a class="header" href="#litstaking">LITStaking</a></h2>
+<p>In this section we will describe the first dAPP created by LIT. Called LITStaking and the core component for LITDAO.</p>
+<p><code>Solidity version: 0.8.4</code></p>
+<h3 id="libraries-used"><a class="header" href="#libraries-used">Libraries used</a></h3>
+<ul>
+<li>OpenZeppelin: IERC20</li>
+<li>OpenZeppelin: SafeERC20</li>
+<li>OpenZeppelin: Ownable</li>
+</ul>
+<h3 id="storage-variables"><a class="header" href="#storage-variables">Storage variables</a></h3>
+<p><em><strong>Structs</strong></em></p>
+<p><code>UserInfo: amount(uint256), rewardDebt(uint256)</code></p>
+<p>This stores deposits on the blockchain. As you can see this struct only calculates values. We will see later how it tracks who made those deposits.</p>
+<p><code>PoolInfo: lpToken(IERC20), allocPoint(uint256), lastRewardBlock(uint256), accVLitPerShare(uint256)</code></p>
+<p>This stores the allowed tokens to deposit and receive rewards. Have in mind that we can have several LPs of $LIT. LIT/ETH, LIT/WETH, LIT/USDC, etc. </p>
+<p><em><strong>Variables</strong></em></p>
+<p><code>IERC20</code> - <code>_VLIT</code>: The token address for vLIT.</p>
+<p><code>uint256</code> - <code>vLITPerBlock</code>: You need to storage how many vLIT will be created per block.</p>
+<p><code>array</code> - <code>PoolInfo[]</code>: This is an <code>array</code>. Think of it as a list of the allowed LPs to stake LIT. We saw that there's a struct with this info, think of that struct as a template to fill </p>
+<p>the info inside this list.</p>
+<p><code>mapping</code> - <code>userInfo</code>: As you can see, we have a <code>UserInfo</code> struct. Solidity is case sensitive so these are two different variables. The struct is the template which interacts with this mapping. A mapping is a key-value variable. Key-Values are used since the beginning of Databases, where if I give you a key you will return a certain value. In this </p>
+<p>case, this is a nested mapping. So it will need two keys to return the expected value. </p>
+<p>The first one is the <code>poolId</code> of the staked asset. The second one is the user <code>address</code>. After inputing those two keys, the smart contract returns the info stored in the mapping, </p>
+<p>with the structure of the struct.</p>
+<p><code>uint256</code> - <code>totalAllocPoint</code>: Variable needed to calculate rewards.</p>
+<p><code>uint256</code> - <code>startBlock</code>: The block where vLIT starts to be minted.</p>
+<h2 id="events"><a class="header" href="#events">Events</a></h2>
+<p>Events are a form of alert that smart contracts have. They allow frontend enviroments to listen to the blockchain in an efficient way and they are also a cheaper form of storage. </p>
+<p>The way they work is indexing data that was previously set.</p>
+<p>We have three events here:</p>
+<ul>
+<li><code>Deposit</code></li>
+<li><code>Withdraw</code></li>
+<li><code>EmergencyWithdraw</code> - More about this one below</li>
+</ul>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p>Functions are the actions that can be called from users or other smart contracts. If you see the <code>onlyOwner</code> tag that means it can only be executed by the owner of the contract. </p>
+<p>In this case litwtf: Deployer </p>
+<p><code>add: params(_allocPoint uint256, _lpToken IERC20, _withUpdate bool) onlyOwner</code></p>
+<p>This function allows a certain LP to be staked. It also sets the share of rewards the pool has.</p>
+<p><code>set: params(_pid, _allocPoint, _withUpdate bool) onlyOwner</code></p>
+<p>This function allows the LP and its allocation points to be updated by the owner.</p>
+<p><code>pendingVLIT: params(_pid uint256, _user address)</code> </p>
+<p>This is a <code>getter</code>. A <code>getter</code> is a type of action that returns a value but doesn't perform any changes. It allows the frontend to see how many rewards that user has pending.</p>
+<p><code>massUpdatePools</code>: </p>
+<p>As you can see this function does not require any parameters. Is used as an inside function on the <code>set</code> function, to update all the pools together. This function is gas sensitive </p>
+<p>due it iterates through all the pools, and that requires a lot of computation. It also uses <code>updatePools</code> as an inside function. It doesn't affect users.</p>
+<p><code>updatePool: params(_pid uint256)</code></p>
+<p>This updates a specific pool. Same as massupdate pools but for a specific pool. It applys logic and safeMath to calculate rewards.</p>
+<p><code>deposit: params(_pid uint256, _amount256)</code></p>
+<p>This is the cashier. It will use all the variables described before so it can keep track of your funds safely. It emits the <code>Deposit</code> event so you receive your confirmation on the </p>
+<p>frontend.</p>
+<p><code>Withdraw: params(_pid uint256, _amount uint256)</code></p>
+<p>Same as deposit but backwards. The only difference is that it adds rewards to the calculation. It emits the <code>Withdraw</code> event to the frontend confirms you received your funds 
+safely.</p>
+<p><code>emergencyWithdraw: params(_pid uint256)</code></p>
+<p>This function is only for emergencies. It will withdraw all the tokens the user deposited on the pool without caring about rewards. This is very useful and safe in case of an </p>
+<p>attack. Unfortunately, due to malicious actors, these functions are needed. </p>
+<p><code>safeVLitTransfer</code> - <code>internal</code></p>
+<p>This function is internal. It can only be called by the smart contract and it's used to transfer vLIT.</p>
+<p><code>RewardPerBlockSet onlyOwner: params(amount uint256)</code></p>
+<p>This is the function that updates the <code>vLITperBlock</code> variable.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="LITDAO_utils.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="LITDAO_utils.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
