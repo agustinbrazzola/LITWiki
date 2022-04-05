@@ -1,0 +1,266 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>2D - LIT Wiki</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="Tokenomics.html"><strong aria-hidden="true">2.</strong> Tokenomics</a></li><li class="chapter-item expanded "><a href="LITDAO.html"><strong aria-hidden="true">3.</strong> LITDAO</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="LITDAO_utils.html"><strong aria-hidden="true">3.1.</strong> Utils</a></li></ol></li><li class="chapter-item expanded "><a href="artists.html"><strong aria-hidden="true">4.</strong> LIT Artists</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="2D.html" class="active"><strong aria-hidden="true">4.1.</strong> 2D</a></li><li class="chapter-item expanded "><a href="3D.html"><strong aria-hidden="true">4.2.</strong> 3D</a></li><li class="chapter-item expanded "><a href="AI.html"><strong aria-hidden="true">4.3.</strong> Artificial Intelligence</a></li><li class="chapter-item expanded "><a href="Film.html"><strong aria-hidden="true">4.4.</strong> Film Makers</a></li><li class="chapter-item expanded "><a href="mixed.html"><strong aria-hidden="true">4.5.</strong> Mixed Media</a></li><li class="chapter-item expanded "><a href="photography.html"><strong aria-hidden="true">4.6.</strong> Photographers</a></li><li class="chapter-item expanded "><a href="tattoo.html"><strong aria-hidden="true">4.7.</strong> Tattoo Artists</a></li><li class="chapter-item expanded "><a href="performance.html"><strong aria-hidden="true">4.8.</strong> Performance Artists</a></li><li class="chapter-item expanded "><a href="writing.html"><strong aria-hidden="true">4.9.</strong> Writers</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">LIT Wiki</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="2d-artists"><a class="header" href="#2d-artists">2D Artists</a></h1>
+<h2 id="hemily"><a class="header" href="#hemily">hemily</a></h2>
+<p><a href="https://twitter.com/hemilylan">Twitter</a> </p>
+<p><a href="https://knownorigin.io/hemilylan/">Marketplace</a></p>
+<p>Discord: hems#9038</p>
+<p><strong>About</strong></p>
+<p>Hemily makes multimedia abstract portraits. Hand mixing acrylic with various mediums, each painting is lovingly scraped, brushed, and designed for web3.</p>
+<p><img src="https://content.knownorigin.io/network/mainnet/edition/9078000/asset.png" alt="The orange coast" /></p>
+<h2 id="clete"><a class="header" href="#clete">Clete</a></h2>
+<p><a href="https://twitter.com/Cletelcharnal">Twitter</a> </p>
+<p><a href="https://foundation.app/@clete">Marketplace</a></p>
+<p>Discord: Clete#7777 </p>
+<p><strong>About</strong></p>
+<p>Clete is a baby artist, a teenage spirit, an adult linguist and an elder story-teller in one mind with so much creativity, passion and enthusiasm and with a goal of creating synesthesia with words and images. She is a dreamer and a builder of the future and a strong believer of the fact that achieving futuristic success is only possible with true human minds. </p>
+<p><img src="https://f8n-production-collection-assets.imgix.net/0x128F4cc47356f3B8A07D6f712B30469b51a3B919/3/nft.jpg?q=80&amp;auto=format%2Ccompress&amp;cs=srgb&amp;max-w=1680&amp;max-h=1680" alt="Chapter 2: The Knowledge That Was Served Frankly" /></p>
+<h2 id="rӔset"><a class="header" href="#rӔset">RӔset</a></h2>
+<p><a href="https://twitter.com/ResetNft">Twitter</a> </p>
+<p><a href="https://makersplace.com/resetnft/">Marketplace</a> </p>
+<p><a href="https://knownorigin.io/resetnft">Marketplace 2</a> </p>
+<p>Discord: resetnft#1609 </p>
+<p><strong>About</strong></p>
+<p>I am a painter gone digital with a penchant for the surreal. I love mixing beauty with elemets that are confronting and make you think. Art is a medium to tell a story and affect change.</p>
+<p><img src="https://mkpcdn.com/1000x/a55d1b5f3e75e1edf1da3f8fa848802b_297380.jpg" alt="Shimmer" /></p>
+<h2 id="happicake"><a class="header" href="#happicake">happicake</a></h2>
+<p><a href="https://twitter.com/happicake">Twitter</a> </p>
+<p><a href="https://opensea.io/HAPPICAKE?tab=created">Marketplace</a> </p>
+<p><a href="https://objkt.com/profile/happicake/created">Marketplace 2</a> </p>
+<p>Discord: happicake#7228 </p>
+<p><strong>About</strong></p>
+<p>GM! I'm a self-taught artist who works in many different media, including photography, painting, drawing, ceramic sculpture, sewing/textiles, set design &amp; installation art. I'm still relatively new to Web3, but planning to start making some NFT collections in the next few months. </p>
+<p>Art to me is about communicating or evoking a feeling that can't be conveyed with ordinary language. I believe it is fluid and alive, like nature- it can mean different things  to different observers from varying perspectives, and the meaning can change over time to reflect new shades of reality.</p>
+<p><img src="https://lh3.googleusercontent.com/c2ZGoF6OfnDIpX7fmA4qXiQ4VzZOaw2CQF8zAytoGRdV6dDxkbCFjnGxdFT-8xUHyZjIP8av95HsUoyqAwhog__8yestZh5cpR9P=w600" alt="$Lit Survivors" /></p>
+<h2 id="nikilesunshine"><a class="header" href="#nikilesunshine">Nikilesunshine</a></h2>
+<p><a href="https://twitter.com/NikiLeSunshine1">Twitter</a> </p>
+<p><a href="https://knownorigin.io/nikile-sunshine1">Marketplace</a> </p>
+<p><a href="https://foundation.app/@NikiLeSunshine">Marketplace 2</a></p>
+<p><a href="https://opensea.io/NikiLeSunshine">Marketplace 3</a></p>
+<p><a href="https://makersplace.com/nikilesunshine1/about/">Marketplace 4</a></p>
+<p><a href="https://showtime.io/NikiLeSunshine">Marketplace 5</a></p>
+<p>Discord: NikiLeSunshine#8056 </p>
+<p><strong>About</strong></p>
+<p>Hello! I am Niki, a self taught digital artist seeing things in a new light, in this great new world. I am a mother of two wonderful children, doing what I love. 
+I have studied color theory for twenty years and enjoy showing how we are all connected and also connected to the world around us. To me this is so humbling. 
+My love for the abstract work is merging with my love for capturing a mood/emotion in a portrait. I have made truly sorrowful artworks but also ones that I hope fills their audience with joy. 
+I am exploring myself as an artist, truly grateful for the opportunities. Never has there been a time in my life where I could learn so much for free. To find my voice, use it, and it can actually be heard and matter. 
+The piece I chose to share is titled &quot;&quot;Between the devil and the deep blue sea&quot;&quot;. This piece represents truly difficult choices or a trapped and tortured mind dreaming of possibilities but only seeing them through a lens or stuck in thought. The ocean waves are like powerful thoughts and images inside this abstract mind. Not getting to express yourself but capturing the beauty of the dreams within. 
+This community of this space and all that it means came as quite a surprise to me. That I am truly grateful for. I wouldnt be here without a great group of people that supported me here. Yet another never have I ever statement. I have never been in such great company. Surrounded by the most brilliant, generous, caring, talented people who are building and supporting one another at the same time. </p>
+<p><img src="https://content.knownorigin.io/network/mainnet/edition/7597000/asset.png" alt="Between the devil and the deep blue sea" /></p>
+<h2 id="joni-b"><a class="header" href="#joni-b">Joni b</a></h2>
+<p><a href="https://twitter.com/Joni_b_">Twitter</a> </p>
+<p><a href="https://objkt.com/profile/jonib">Marketplace</a> </p>
+<p><a href="https://opensea.io/Jonibored">Marketplace 2</a> </p>
+<p>Discord: joni#1599</p>
+<p><strong>About</strong></p>
+<p>cartoonist, illustrator, motion designer and university professor from somewhere in latam. I don´t like dinosaurs, so my work is not about dinosaurs but about us, humans. </p>
+<p><img src="https://lh3.googleusercontent.com/is4niURMXS-Dq4HiFHyB_u2UQHDezT-yuOokrxhDaSjbZ32tDZOvwDdHAnW1WEdY18Au2L8mCmX-tk2KTnXrr1BH72AZ6ko87Ktm9g=w600" alt="So manet things to see" /></p>
+<h2 id="manuel-larino"><a class="header" href="#manuel-larino">Manuel Larino</a></h2>
+<p><a href="https://twitter.com/ManuelLarino">Twitter</a> </p>
+<p><a href="https://opensea.io/collection/all-day-dreamers-by-manuel-larino">Marketplace</a> </p>
+<p>Discord: Egloo#7304</p>
+<p><strong>About</strong></p>
+<p>Born in Spain I began working as a commercial artist for a varied group of clients, Esquire, Paste Magazine, Faber &amp; Faber...
+Now is time to experiment... </p>
+<p><img src="https://lh3.googleusercontent.com/prCunk82vIh8zH9wF-sfmggERnK08vyUzQZEq3n56_A_-Yf8iKO30jYbUijt7dwwxGqBtcdGLJkwjzaz5cKtALEdaO-u-xtEMRO10A=w600" alt="All day dreamers" /></p>
+<h2 id="treybytes"><a class="header" href="#treybytes">treybytes</a></h2>
+<p><a href="https://twitter.com/treybytes">Twitter</a> </p>
+<p><a href="https://objkt.com/profile/treyby/created">Marketplace</a> </p>
+<p>Discord: treybytes#4704</p>
+<p><strong>About</strong></p>
+<p>I am treybytes and I make 2D abstract art, 3D art + Animation, and original music that I produce and master myself! I am going to be minting 3D art on the Eth blockchain soon... stay tuned!</p>
+<p><img src="https://assets.objkt.media/file/assets-003/QmZwMVJ3e8mGyMPq68288sQBzdXg3LH5ATXvKDwrNye5Xc/artifact" alt="Divine Intervention" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="artists.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="3D.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="artists.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="3D.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
