@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="Tokenomics.html"><strong aria-hidden="true">2.</strong> Tokenomics</a></li><li class="chapter-item expanded "><a href="LITDAO.html" class="active"><strong aria-hidden="true">3.</strong> LITDAO</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="LITDAO_utils.html"><strong aria-hidden="true">3.1.</strong> Utils</a></li></ol></li><li class="chapter-item expanded "><a href="artists.html"><strong aria-hidden="true">4.</strong> LIT Artists</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="2D.html"><strong aria-hidden="true">4.1.</strong> 2D</a></li><li class="chapter-item expanded "><a href="3D.html"><strong aria-hidden="true">4.2.</strong> 3D</a></li><li class="chapter-item expanded "><a href="AI.html"><strong aria-hidden="true">4.3.</strong> Artificial Intelligence</a></li><li class="chapter-item expanded "><a href="Film.html"><strong aria-hidden="true">4.4.</strong> Film Makers</a></li><li class="chapter-item expanded "><a href="mixed.html"><strong aria-hidden="true">4.5.</strong> Mixed Media</a></li><li class="chapter-item expanded "><a href="photography.html"><strong aria-hidden="true">4.6.</strong> Photographers</a></li><li class="chapter-item expanded "><a href="tattoo.html"><strong aria-hidden="true">4.7.</strong> Tattoo Artists</a></li><li class="chapter-item expanded "><a href="writing.html"><strong aria-hidden="true">4.8.</strong> Writers</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">1.</strong> Overview</a></li><li class="chapter-item expanded "><a href="Tokenomics.html"><strong aria-hidden="true">2.</strong> Tokenomics</a></li><li class="chapter-item expanded "><a href="LITDAO.html" class="active"><strong aria-hidden="true">3.</strong> LITDAO</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="LITDAO_utils.html"><strong aria-hidden="true">3.1.</strong> Utils</a></li></ol></li><li class="chapter-item expanded "><a href="artists.html"><strong aria-hidden="true">4.</strong> LIT Artists</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="2D.html"><strong aria-hidden="true">4.1.</strong> 2D</a></li><li class="chapter-item expanded "><a href="3D.html"><strong aria-hidden="true">4.2.</strong> 3D</a></li><li class="chapter-item expanded "><a href="AI.html"><strong aria-hidden="true">4.3.</strong> Artificial Intelligence</a></li><li class="chapter-item expanded "><a href="Film.html"><strong aria-hidden="true">4.4.</strong> Film Makers</a></li><li class="chapter-item expanded "><a href="mixed.html"><strong aria-hidden="true">4.5.</strong> Mixed Media</a></li><li class="chapter-item expanded "><a href="photography.html"><strong aria-hidden="true">4.6.</strong> Photographers</a></li><li class="chapter-item expanded "><a href="tattoo.html"><strong aria-hidden="true">4.7.</strong> Tattoo Artists</a></li><li class="chapter-item expanded "><a href="performance.html"><strong aria-hidden="true">4.8.</strong> Performance Artists</a></li><li class="chapter-item expanded "><a href="writing.html"><strong aria-hidden="true">4.9.</strong> Writers</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -192,15 +192,22 @@
 <p>due it iterates through all the pools, and that requires a lot of computation. It also uses <code>updatePools</code> as an inside function. It doesn't affect users.</p>
 <p><code>updatePool: params(_pid uint256)</code></p>
 <p>This updates a specific pool. Same as massupdate pools but for a specific pool. It applys logic and safeMath to calculate rewards.</p>
-<p><code>deposit: params(_pid uint256, _amount256)</code></p>
-<p>This is the cashier. It will use all the variables described before so it can keep track of your funds safely. It emits the <code>Deposit</code> event so you receive your confirmation on the </p>
-<p>frontend.</p>
+<p><strong>Logic used to calculate rewards</strong></p>
+<p><code>uint256 vLitReward = elapsedBlocks * vLitPerBlock * pool.allocPoint / totalAllocPoint</code></p>
+<p>vLitReward is calculated by:  the amount of elapsed blocks since deposited, the amount of vLIT set to be emitted per block * the allocation point of that pool / the sum of all allocation pools. Right now we only have one pool for staking, so that last part of the formula = 1.</p>
 <p><code>Withdraw: params(_pid uint256, _amount uint256)</code></p>
 <p>Same as deposit but backwards. The only difference is that it adds rewards to the calculation. It emits the <code>Withdraw</code> event to the frontend confirms you received your funds 
 safely.</p>
+<p><strong>How much rewards will you receive:</strong> </p>
+<p><code>pending reward = (user.amount * pool.accVLitPerShare) - user.rewardDebt</code> </p>
+<p>Translated that would be: the amount of LIT you deposited * the calculation of vLITPerShare the pool is set to - (your amount * vLITPerShare / 1e12 at the time you deposited)</p>
+<p>This function doesn't have a cooldown period so you can withdraw whenever you want.</p>
+<p>So you will receive LIT and vLIT as rewards when you withdraw.</p>
+<p><code>deposit: params(_pid uint256, _amount256)</code></p>
+<p>This is the cashier. It will use all the variables described before so it can keep track of your funds safely. It emits the <code>Deposit</code> event so you receive your confirmation on the frontend.</p>
 <p><code>emergencyWithdraw: params(_pid uint256)</code></p>
-<p>This function is only for emergencies. It will withdraw all the tokens the user deposited on the pool without caring about rewards. This is very useful and safe in case of an </p>
-<p>attack. Unfortunately, due to malicious actors, these functions are needed. </p>
+<p>This function is only for emergencies. It will withdraw all the tokens the user deposited on the pool without caring about rewards. This is very useful and safe in case of an attack. </p>
+<p>Unfortunately, due to malicious actors, these functions are needed. </p>
 <p><code>safeVLitTransfer</code> - <code>internal</code></p>
 <p>This function is internal. It can only be called by the smart contract and it's used to transfer vLIT.</p>
 <p><code>RewardPerBlockSet onlyOwner: params(amount uint256)</code></p>
@@ -235,6 +242,22 @@ safely.</p>
 
         </div>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
 
 
 
